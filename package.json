@@ -1,6 +1,6 @@
 {
   "name": "ng-guzzle",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "A full gulp configuration for AngularJS.",
   "main": "./lib/guzzle.js",
   "author": "Trevor Reed",
@@ -8,6 +8,7 @@
   "dependencies": {
     "colors": "^1.1.2",
     "concat-with-sourcemaps": "^1.0.4",
+    "express": "^4.13.4",
     "git-rev-sync": "^1.4.0",
     "gulp": "^3.9.1",
     "gulp-file": "^0.2.0",
@@ -23,6 +24,7 @@
     "gulp-watch": "^4.3.5",
     "js-string-escape": "^1.0.0",
     "node-notifier": "^4.5.0",
+    "puddy": "^2.0.0-alpha.003",
     "through2": "^2.0.1",
     "vinyl-sourcemaps-apply": "^0.2.1"
   }
