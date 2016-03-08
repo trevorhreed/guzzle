@@ -1,6 +1,6 @@
 {
   "name": "ng-guzzle",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A full gulp configuration for AngularJS.",
   "main": "./lib/guzzle.js",
   "author": "Trevor Reed",
