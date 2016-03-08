@@ -1,0 +1,8 @@
+{
+  "name": "ng-guzzle",
+  "version": "0.0.1",
+  "description": "A full gulp configuration for AngularJS.",
+  "main": "./lib/guzzle.js",
+  "author": "Trevor Reed",
+  "license": "MIT"
+}
