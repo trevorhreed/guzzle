@@ -5,6 +5,9 @@
   "main": "./lib/guzzle.js",
   "author": "Trevor Reed",
   "license": "MIT",
+  "bin": {
+    "guzzle": "./lib/guzzle-cli.js"
+  },
   "dependencies": {
     "colors": "^1.1.2",
     "concat-with-sourcemaps": "^1.0.4",
@@ -23,6 +26,7 @@
     "gulp-watch": "^4.3.5",
     "js-string-escape": "^1.0.0",
     "node-notifier": "^4.5.0",
+    "puddy": "^2.0.0",
     "through2": "^2.0.1",
     "vinyl-sourcemaps-apply": "^0.2.1"
   }
