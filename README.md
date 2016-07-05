@@ -33,4 +33,11 @@ $ guzzle watch
 ...
 ```
 
-Each guzzle module gets compiled into two files: one JavaScript file and one CSS file. Each JavaScript module is wrapped in an [IIFE](https://en.wikipedia.org/wiki/Immediately-invoked_function_expression) with a single parameter named ngm. This parameter is an Angular module.
+Each guzzle module gets compiled into two files: one JavaScript file and one CSS file. Each JavaScript module is wrapped in an [IIFE](https://en.wikipedia.org/wiki/Immediately-invoked_function_expression) with a single parameter named ngm. This parameter is an Angular module. The Angular module can be bootstrapped by including a `selector` attribute on the `script` tag used to include the JavaScript file. There are two possible values for the selector attribute: `document | [QUERY SELECTOR]`. If you use the query selector and the selector returns multiple elements, the Angular module will be bootstrapped on all elements returned by the selector query.
+
+*index.html*
+```
+...
+  <script src="/dest/app.js" selector="document"></script>
+...
+```
