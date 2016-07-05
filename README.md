@@ -21,7 +21,8 @@ $ guzzle watch
           "src": "./src/app/",
           "dest": "./dest/",
           "static": "./dest/",
-          "strictDi": false
+          "strictDi": false,
+          "minify": false
         },
         {
           "id": "lib",
