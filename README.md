@@ -5,10 +5,28 @@ This project helps me remove the gulp boilerplate from my AngularJS applications
 Ok, here are some reminders for myself:
 
 ```
-$ guzzle
+$ guzzle init
+$ guzzle build
+$ guzzle watch
 ```
 
+*package.json*
 ```
-./src/
-./www/
+...
+  "dependencyConfig": {
+    "ng-guzzle": [
+      {
+        "id": "app",
+        "src": "./src/app/",
+        "dest": "./dest/",
+        "static": "./dest/"
+      },
+      {
+        "id": "lib",
+        "src": "./src/lib/",
+        "dest": "./dest/"
+      }
+    ]
+  }
+...
 ```
