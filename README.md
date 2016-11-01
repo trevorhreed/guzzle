@@ -15,6 +15,10 @@ $ guzzle watch
 ...
   "dependencyConfig": {
     "ng-guzzle": {
+      "liveServerParams": {
+        "port": 3000,
+        "etc.": "etc."
+      },
       "modules": [
         {
           "id": "app",
