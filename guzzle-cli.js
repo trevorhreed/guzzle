@@ -9,28 +9,10 @@ const pkgFilename = path.join(process.cwd(), 'package.json');
 const pkg = require(pkgFilename);
 const config = pkg && pkg.guzzle || {};
 const args = process.argv;
-const mode = args.indexOf('--mode') > 0 ? args[args.indexOf('--mode') + 1] : 'help';
 
-switch(mode){
-  case 'init':
-    doInit();
-    break;
-  case 'build':
-    guzzle(config.modules).build(()=>{
-      console.log('Build complete.');
-    });
-    console.log('Building...');
-    break;
-  case 'watch':
-    guzzle(config.modules).watch();
-    console.log('Watching files...');
-    if(config.liveServerParams){
-      liveServer.start(config.liveServerParams);
-      console.log('Serving files...');
-    }
-    break;
-  default:
-    doHelp();
+if(args.indexOf('-v') > 0 || args.indexOf('--version') > 0){
+  console.log(`v${version}`);
+  return;
 }
 
 const doInit = () => {
@@ -80,4 +62,27 @@ Commands:
   watch   - Watch source files, recompile, and write them out to destination
 
   `);
+}
+
+const mode = args.indexOf('--mode') > 0 ? args[args.indexOf('--mode') + 1] : 'help';
+switch(mode){
+  case 'init':
+    doInit();
+    break;
+  case 'build':
+    guzzle(config.modules).build(()=>{
+      console.log('Build complete.');
+    });
+    console.log('Building...');
+    break;
+  case 'watch':
+    guzzle(config.modules).watch();
+    console.log('Watching files...');
+    if(config.liveServerParams){
+      liveServer.start(config.liveServerParams);
+      console.log('Serving files...');
+    }
+    break;
+  default:
+    doHelp();
 }

@@ -1,23 +1,15 @@
-let DEBUG = false;
-
-// █████████████████████████████████████████████████████████████████████████████
-// UTILS
-
 const fs = require('fs');
 const path = require('path');
 const mkdirp = require('mkdirp');
-const util = require('util');
 const Glob = require('glob');
 const GlobParent = require('glob-parent');
 const Concat = require('concat-with-sourcemaps');
-const sourceMapMerger = require('source-map-merger');
 const Less = require('less');
-const UglifyJs = require('uglify-js');
 const chokidar = require('chokidar');
 const git = require('git-rev-sync');
+const util = require('util');
 const html2JsStr = require('js-string-escape')
 const colors = require('colors');
-
 const noop = () => {};
 
 const errors = (label) => {
@@ -27,7 +19,7 @@ const errors = (label) => {
         hr = Array(cols + 1).join(' ');
     if(reason instanceof Error){
       message = `  ${reason.name}: ${reason.message}`;
-      details = reason.stack.split('\n');
+      details = (reason.stack || '').split('\n');
       details.shift();
       details = details.map(line => {
         return line + Array(cols - (line.length % cols) + 1).join(' ');
@@ -40,12 +32,12 @@ const errors = (label) => {
     if(label) message += ` (${label})`;
     message = message += Array(cols - (message.length % cols) + 1).join(' ');
 
-    console.log('\n' + hr.bgWhite);
-    console.log(message.bgWhite.red.bold);
-    console.log(hr.bgWhite);
-    console.log(hr.bgRed);
-    console.log(details.bgRed.white);
-    console.log(hr.bgRed + hr.bgRed + '\n');
+    util.log('\n' + hr.bgWhite);
+    util.log(message.bgWhite.red.bold);
+    util.log(hr.bgWhite);
+    util.log(hr.bgRed);
+    util.log(details.bgRed.white);
+    util.log(hr.bgRed + hr.bgRed + '\n');
   }
 }
 
@@ -277,6 +269,7 @@ const less = () => {
         let sourcesContent = JSON.parse(file.sourceMap).sourcesContent;
         let options = { sourceMap: { sourceMapFileInline: true } };
         Less.render(file.content, options, (err, output)=>{
+          if(err) return reject(err);
           resolve({
             path: file.path,
             relative: file.path,
@@ -290,10 +283,6 @@ const less = () => {
     })
   }
 }
-
-// END: UTILS
-// █████████████████████████████████████████████████████████████████████████████
-
 
 const getModuleTasks = (config) => {
 
@@ -434,12 +423,9 @@ angular.element(document).ready(function(){
   return { buildModule, watchModule }
 }
 
-const guzzle = module.exports = (modules, debug) => {
-  DEBUG = !!debug;
-
+const guzzle = module.exports = (modules) => {
   if(!Array.isArray(modules)) modules = [modules];
   modules = modules.map(getModuleTasks)
-
   return {
     watch: (cb, errCb) => {
       return Promise.all(modules.map(tasks => tasks.watchModule(cb, errCb)));
