@@ -1,12 +1,12 @@
 {
   "name": "ng-guzzle",
-  "version": "0.0.29",
+  "version": "0.0.30",
   "description": "A full gulp configuration for AngularJS.",
   "main": "./lib/guzzle.js",
   "author": "Trevor Reed",
   "license": "MIT",
   "bin": {
-    "guzzle": "./lib/guzzle-cli.js"
+    "guzzle": "./guzzle.js"
   },
   "dependencies": {
     "chokidar": "^1.7.0",
